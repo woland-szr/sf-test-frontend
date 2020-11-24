@@ -1,0 +1,72 @@
+.userinfo {
+  background-color: #ffffff;
+  width: 352px;
+  border: 1px solid #e7e7e7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -185px;
+}
+
+.userinfo__logo {
+  width: 114px;
+  height: 114px;
+  background-color: #e6e8f9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 59px 0 33px;
+}
+
+.userinfo__name {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.userinfo__prof {
+  font-size: 16px;
+  font-weight: 600;
+  color: #a9a9a9;
+}
+
+.userinfo__infoblock {
+  display: flex;
+  align-items: center;
+  margin-top: 42px;
+}
+.userinfo__infoblock-info {
+  margin: 12px 35px 13px;
+}
+
+.info__amount {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.info__name {
+  font-size: 16px;
+  color: #a9a9a9;
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background-color: #dfdfdf;
+  margin: 5px;
+}
+
+.userinfo_btn {
+  width: 304px;
+  height: 42px;
+  background-color: #f2f2f2;
+  border: 0;
+  border-radius: 10px;
+  margin: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #255def;
+  cursor: pointer;
+}
