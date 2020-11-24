@@ -102,10 +102,6 @@ const FirstBlock = ({ userData }) => {
         { value: 'подработка', label: 'Подработка' }
       ]
 
-      const InpChange = (e) => {
-            console.log(e.value)
-      }
-
     return (
         <div className='firstblock'>
             <div className='firstblock__header'>
