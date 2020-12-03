@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 import './index.css';
+import { putUserData } from '../../helpers/queries';
 
 const FirstBlock = ({ userData }) => {
 
@@ -20,17 +21,6 @@ const FirstBlock = ({ userData }) => {
             const months = expMonthsInput.current.value
             const conditions = conditionsSelect.current.state.value
  
-            const fetchUserData = async (data) => {
-                // eslint-disable-next-line
-                const response = await fetch("/" + blockData._id,{
-                    method: 'PUT',
-                    body: JSON.stringify(data),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-            }
-
             if (!isNaN(salary) && !isNaN(+years) && !isNaN(months) && salary>=0 && years>=0 && months>=0 && conditions !== null) {
                 setUserData({
                 ...blockData,
@@ -39,7 +29,7 @@ const FirstBlock = ({ userData }) => {
                 conditions: conditions.map(item => {return item.value})
                 })
                 setMode(!viewMode)
-                fetchUserData(blockData)
+                putUserData(blockData)
             } else {alert ('Введите корректные данные')}
         } else {
             setMode(!viewMode)
@@ -92,14 +82,14 @@ const FirstBlock = ({ userData }) => {
                 str = str + element +', '
             }
         });
-        return str.charAt(0).toUpperCase() + str.slice(1)
+        return str
     }
 
     const selectOptions = [
-        { value: 'полная занятость', label: 'Полная занятость' },
-        { value: 'частичная занятость', label: 'Частичная занятость' },
-        { value: 'удаленная работа', label: 'Удаленная работа' },
-        { value: 'подработка', label: 'Подработка' }
+        { value: 'Полная занятость', label: 'Полная занятость' },
+        { value: 'Частичная занятость', label: 'Частичная занятость' },
+        { value: 'Удаленная работа', label: 'Удаленная работа' },
+        { value: 'Подработка', label: 'Подработка' }
       ]
 
     return (
@@ -116,7 +106,7 @@ const FirstBlock = ({ userData }) => {
                     <div className={viewMode ? 'datablock-value view' : 'datablock-value'}>
                         {viewMode  
                             ? Intl.NumberFormat('ru-RU').format(blockData.salary)
-                            : <input type='text' ref={salaryInput} size='6' onChange={(event)=>{InpChange(event);}}/>
+                            : <input type='text' ref={salaryInput} size='6' />
                         }
                     &nbsp;руб.</div>
                 </div>

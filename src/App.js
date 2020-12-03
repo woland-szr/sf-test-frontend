@@ -3,6 +3,9 @@ import './App.css';
 import Header from './components/Header';
 import UserInfo from './components/UserInfo';
 import FirstBlock from './components/FirstBlock';
+import { getUserData } from './helpers/queries';
+
+console.log(getUserData)
 
 const App = () => {
   const initialData = {
@@ -18,13 +21,9 @@ const App = () => {
   const [userData, setUserData] = useState(initialData);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      // eslint-disable-next-line
-      const response = await fetch("/" + initialData._id,{method: 'GET'})
-      //        setUserData(await response.json())
-      setUserData(initialData);
-    };
-    fetchUserData();
+    getUserData(initialData);
+    //        setUserData(await response.json())
+    setUserData(initialData);
     // eslint-disable-next-line
   }, [userData])
 
