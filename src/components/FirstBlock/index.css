@@ -66,3 +66,6 @@
 .datablock:last-child .view {
   height: 38px;
 }
+.datablock:last-child .view:first-letter {
+  text-transform: uppercase;
+}
