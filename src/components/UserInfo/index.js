@@ -1,7 +1,10 @@
-import React from 'react';
-import './index.css';
+import React from 'react'
+import { useSelector } from 'react-redux'
+import './index.css'
 
-const UserInfo = ({ userData }) => {
+const UserInfo = () => {
+
+    const userData = useSelector(state => state.userData)
 
     return (
     <div className='userinfo'>

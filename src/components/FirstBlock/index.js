@@ -1,13 +1,20 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Select from 'react-select';
-import PropTypes from 'prop-types';
+import PropTypes, {checkPropTypes} from 'prop-types';
 import './index.css';
-import { putUserData } from '../../helpers/queries';
+import { useDispatch, useSelector } from 'react-redux';
+import { putData, toggleMode } from '../redux/actions';
 
-const FirstBlock = ({ userData }) => {
+const FirstBlock = () => {
 
-    const [viewMode, setMode] = useState(true)
-    const [blockData, setUserData] = useState(userData)
+    const userData = useSelector(state => state.userData)
+    const viewMode = useSelector(state => state.viewMode)
+    checkPropTypes(PropTypes.object, userData)
+    checkPropTypes(PropTypes.bool, viewMode)
+
+    const dispatch = useDispatch()
+
+    let blockData = {...userData}
 
     const salaryInput = useRef(null)
     const expYearsInput = useRef(null)
@@ -22,17 +29,16 @@ const FirstBlock = ({ userData }) => {
             const conditions = conditionsSelect.current.state.value
  
             if (!isNaN(salary) && !isNaN(+years) && !isNaN(months) && salary>=0 && years>=0 && months>=0 && conditions !== null) {
-                setUserData({
+                dispatch(putData({
                 ...blockData,
                 salary: salary,
                 exp: Number(years) * 12 + Number(months),
                 conditions: conditions.map(item => {return item.value})
-                })
-                setMode(!viewMode)
-                putUserData(blockData)
+                }))
+                dispatch(toggleMode())
             } else {alert ('Введите корректные данные')}
         } else {
-            setMode(!viewMode)
+            dispatch(toggleMode())
         }
     }
 
@@ -135,10 +141,6 @@ const FirstBlock = ({ userData }) => {
             </div>
         </div>
     )
-}
-
-FirstBlock.propTypes = {
-    userData: PropTypes.object.isRequired
 }
 
 export default FirstBlock
